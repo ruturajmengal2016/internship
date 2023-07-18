@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      th,
+      td {
+        padding: 0.5rem;
+      }
+      li {
+        list-style: none;
+        font-size: 1.2rem;
+        color: orange;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <nav style="width: 100%">
+        <ul style="width: 50%; display: flex; justify-content: space-around">
+          <li><a href="/">Home</a></li>
+          <li><a href="/stat">Statistics</a></li>
+          <li><a href="/bar">Bar Chart</a></li>
+          <li><a href="/pie">Pie Chart</a></li>
+        </ul>
+      </nav>
+    </div>
+    <table border="1" style="padding: 0.5rem">
+      <thead>
+        <th>Id</th>
+        <th>Title</th>
+        <th>Price</th>
+        <th>Category</th>
+        <th>Sold</th>
+      </thead>
+      <tbody>
+        <% data.forEach(function(ele){ %>
+        <tr>
+          <td><%= ele.id %></td>
+          <td><%= ele.title %></td>
+          <td><%= ele.price %></td>
+          <td><%= ele.category %></td>
+          <td><%= ele.sold %></td>
+        </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </body>
+</html>
+
+<!-- {
+  "id": 1,
+  "title": "Fjallraven  Foldsack No 1 Backpack Fits 15 Laptops",
+  "price": 329.85,
+  "description": "Your perfect pack for everyday use and walks in the forest. Stash your laptop up to 15 inches in the padded sleeve your everyday",
+  "category": "men's clothing",
+  "image": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+  "sold": false,
+  "dateOfSale": "2021-11-27T20:29:54+05:30"
+}, -->

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      li {
+        list-style: none;
+        font-size: 1.2rem;
+        color: orange;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <nav style="width: 100%">
+        <ul style="width: 50%; display: flex; justify-content: space-around">
+          <li><a href="/">Home</a></li>
+          <li><a href="/stat">Statistics</a></li>
+          <li><a href="/bar">Bar Chart</a></li>
+          <li><a href="/pie">Pie Chart</a></li>
+        </ul>
+      </nav>
+    </div>
+    <h1>Statistics</h1>
+    <div>
+      <input
+        type="text"
+        id="month"
+        placeholder="Month No. Ex. 1 for 'Jan'"
+        name="month"
+      />
+      <button id="Click" onclick="cal()">Click</button>
+    </div>
+    <div>
+      <h1>Total sale amount of month: <%= sales %></h1>
+      <h1>Total number of sold items of month: <%= items %></h1>
+      <h1>Total number of not sold items of month: <%= sold_items %></h1>
+    </div>
+  </body>
+  <script>
+    let value = "";
+    function cal() {
+      console.log(sales);
+    }
+    const month = document.getElementById("month");
+    const button = document.getElementById("Click");
+    month.addEventListener("input", (event) => {
+      value = event.target.value;
+    });
+  </script>
+</html>

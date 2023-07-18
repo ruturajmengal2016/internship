@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      canvas {
+        display: block;
+        margin: 0 auto;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="pieChart" width="400" height="400"></canvas>
+
+    <script>
+      var data = <%= JSON.stringify(data) %>; // Pass the data as JSON to the template
+      var canvas = document.getElementById("pieChart");
+      var context = canvas.getContext("2d");
+
+      var centerX = canvas.width / 2;
+      var centerY = canvas.height / 2;
+      var radius = Math.min(canvas.width, canvas.height) / 2;
+
+      var total = data.reduce((acc, value) => acc + value, 0);
+      var cumulativePercentage = 0;
+
+      for (var i = 0; i < data.length; i++) {
+          var percentage = (data[i] / total) * 100;
+          var startAngle = (cumulativePercentage / 100) * Math.PI * 2;
+          var endAngle = ((cumulativePercentage + percentage) / 100) * Math.PI * 2;
+
+          context.beginPath();
+          context.moveTo(centerX, centerY);
+          context.arc(centerX, centerY, radius, startAngle, endAngle);
+          context.closePath();
+
+          context.fillStyle = getRandomColor();
+          context.fill();
+
+          var labelAngle = startAngle + (endAngle - startAngle) / 2;
+          var labelX = centerX + (radius / 2) * Math.cos(labelAngle);
+          var labelY = centerY + (radius / 2) * Math.sin(labelAngle);
+          context.fillStyle = "#000";
+          context.font = "12px Arial";
+          context.textAlign = "center";
+          context.fillText(data[i], labelX, labelY);
+
+          cumulativePercentage += percentage;
+      }
+
+      function getRandomColor() {
+          var letters = "0123456789ABCDEF";
+          var color = "#";
+          for (var i = 0; i < 6; i++) {
+              color += letters[Math.floor(Math.random() * 16)];
+          }
+          return color;
+      }
+    </script>
+  </body>
+</html>
